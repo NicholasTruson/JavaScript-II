@@ -79,14 +79,7 @@ console.log(allCaps);
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts so they can choose a different size. Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
 
-let largeShirts = [];
-
-runners.filter(function (runner) {
-    if(runners.shirt_size === 'L') {
-        largeShirts.push(`${runnners.first_name} ${runners.last_name}`);
-    }
-})
-
+let largeShirts = runners.filter(item => item.shirt_size === 'L')
 console.log(largeShirts);
 
 // ==== Challenge 4: Use .reduce() ====
@@ -94,9 +87,9 @@ console.log(largeShirts);
 
 let ticketPriceTotal = [];
 
-runners.reduce(function(accumulator, currentitem) {
-    return accumulator + currentitem.donation;
-})
+ticketPriceTotal = runners.reduce((total, amt) => {
+    return total += amt.donation;	
+}, 0);
 
 console.log(ticketPriceTotal);
 
@@ -108,7 +101,7 @@ console.log(ticketPriceTotal);
 let lastCaps = [];
 
 runners.map(function (runners) {
-    allCaps.push(runners.last_name.toUpperCase());
+    lastCaps.push(runners.last_name.toUpperCase());
 })
 
 console.log(lastCaps); 
@@ -118,24 +111,18 @@ console.log(lastCaps);
 let companyandName = [];
 
 runners.forEach(function (array) {
-    fullName.push(`${array.first_name} ${array.last_name} ${array.company_name}`);
+    companyandName.push(`${array.first_name} ${array.last_name} ${array.company_name}`);
 
 })
 
 console.log(companyandName);
 
-// Problem 3 - Cheapskate Shaming
+// Problem 3 - Cheapskate Shaming // How would I get this array to show names instead of objects???
 
 let cheapSkates = [];
 
-runners.filter(function (runner) {
-    if(runners.donation < '50') {
-        return true;
-        cheapSkates.push(`${runnners.first_name} ${runners.last_name}`);
-    }
-    else {
-        return false;
-    }
-})
+cheapSkates = runners.filter((amt) => {
+	return amt.donation <= 50;
+}); 
 
 console.log(cheapSkates);
